@@ -9,7 +9,8 @@ export default function Home() {
   const items = [
     { id: 1, category: "Weapon", title: "Sword", img: "https://thumb.ac-illust.com/48/48e5606e14c65071e25f380e71c6b181_w.jpeg" },
     { id: 2, category: "Gun", title: "Pistol", img: "https://media.istockphoto.com/id/1218529654/th/%E0%B9%80%E0%B8%A7%E0%B8%84%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C/%E0%B8%9B%E0%B8%B7%E0%B8%99%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%9B%E0%B8%B0%E0%B8%9E%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%8B%E0%B8%A5-%E0%B9%80%E0%B8%A7%E0%B8%81%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C-8-%E0%B8%9A%E0%B8%B4%E0%B8%95%E0%B9%84%E0%B8%AD%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%80%E0%B8%81%E0%B8%A1%E0%B9%81%E0%B8%A2%E0%B8%81%E0%B8%9A%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%B5%E0%B8%82%E0%B8%B2%E0%B8%A7.jpg?s=612x612&w=0&k=20&c=pudWXJIPBsCEGeYpVIiSH7I3yLl4L4VjE6gtC57pnRg=" },
-    { id: 3, category: "Medicine", title: "Red Button", img: "https://www.shutterstock.com/image-vector/medication-vitamin-bottle-game-pixel-260nw-2319992415.jpg" }
+    { id: 3, category: "Medicine", title: "Red Button", img: "https://png.pngtree.com/png-clipart/20230923/original/pngtree-pixelated-magic-potion-icon-a-pixel-art-game-symbol-of-enchantment-png-image_12663721.png" },
+    // { id: 4, category: "Weapon", title: "Sword", img:"https://previews.123rf.com/images/captainvector/captainvector2208/captainvector220800358/189701034-pixel-art-sword.jpg"}
   ];
 
   const filteredItems = selectedCategory === "All" ? items : items.filter(item => item.category === selectedCategory);
@@ -29,7 +30,7 @@ export default function Home() {
         ))}
       </div>
 
-      {/* เพิ่ม padding-top เพื่อให้ปุ่มไม่โดนรายการบัง */}
+     
       <div className="pt-20 flex justify-center items-center flex-wrap gap-4">
         {filteredItems.length > 0 ? (
           filteredItems.map(item => (
