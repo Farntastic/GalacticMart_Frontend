@@ -95,13 +95,7 @@ export default function AddProduct() {
             />
           </div>
 
-          <div>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Pick a file</legend>
-              <input type="file" className="file-input" />
-              <label className="fieldset-label">Max size 2MB</label>
-            </fieldset>
-          </div>
+         
 
           {/* Submit Button */}
           <button type="submit" className="btn btn-primary w-md">

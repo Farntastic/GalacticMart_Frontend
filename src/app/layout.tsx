@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
+import Header from "@/components/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,25 +28,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} h-screen`}
       >
-        <header>
-        <div className="navbar bg-base-100 shadow-sm">
-        <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Galactic Mart</a>
-        </div>
-        <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="addproduct">Add</Link></li>
-          <li><Link href="sale">Sale</Link></li>
-           
-          </ul>
-        </div>
-      </div>
-        </header>
+        <Header></Header>
         {children}
-        <footer>
-
-        </footer>
+        <footer></footer>
       </body>
     </html>
   );

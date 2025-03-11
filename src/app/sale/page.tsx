@@ -45,3 +45,6 @@ export default function Sale() {
   </div>
   )
 }
+
+
+  

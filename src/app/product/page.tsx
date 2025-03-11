@@ -1,39 +1,55 @@
+"use client";
 
-import React from "react";
+import { useState } from "react";
+import Link from "next/link";
+import items from "@/components/items";
 
-export default function Product() {
+export default function Home() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  
+
+  const filteredItems = selectedCategory === "All" ? items : items.filter(item => item.category === selectedCategory);
+
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="card bg-base-100 shadow-lg w-full h-full flex flex-row p-4 gap-4">
-        {/* รูปภาพสินค้า */}
-        <div className="w-1/3">
-          <img
-            src="https://thumb.ac-illust.com/48/48e5606e14c65071e25f380e71c6b181_w.jpeg"
-            alt="Product"
-            className="rounded-lg w-full"
-          />
-        </div>
 
-        {/* รายละเอียดสินค้า */}
-        <div className="w-2/3 flex flex-col justify-between">
-          <div>
-            <h2 className="text-xl font-semibold">Product Name</h2>
-            <p className="text-gray-500">Category: Electronics</p>
-            <p className="text-gray-700 mt-2">
-            Forged from the heart of a thunderstorm, this sword crackles with raw energy. The blade, sleek and shining with electric blue veins, has been imbued with the power of lightning itself. When swung, the sword emits a bright flash, discharging arcs of lightning to strike down enemies with deadly precision. This weapon is known to cause chain reactions of electricity, stunning and electrifying nearby foes.
-            </p>
-            <div className="flex gap-4">
-            <p className="">Quantity : 2</p> 
-            <p className="ml-auto">Pirce : 2500</p>
+    <div className="relative min-h-screen">
+      {/* ปุ่มเลือกประเภท */}
+      <div className="absolute  top-4 left-1/2 -translate-x-1/2 z-50 flex space-x-2 bg-white p-3 shadow-lg rounded-lg border border-gray-300">
+        {["All", "Weapon", "Gun", "Medicine"].map((category) => (
+          <button 
+            key={category} 
+            className={`btn join-item ${selectedCategory === category ? "btn-primary" : ""}`}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+     
+      <div className="pt-20 flex justify-center items-center flex-wrap gap-4">
+        {filteredItems.length > 0 ? (
+          filteredItems.map(item => (
+            <div key={item.id} className="card bg-base-100 w-96 shadow-sm m-2">
+              <figure>
+                <img  src={item.img} alt={item.title} />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">{item.title}</h2>
+                <p>Category: {item.category}</p>
+                <div className="card-actions justify-end">
+                  <button className="btn btn-primary">
+                  <Link href={`/product/${item.id}`}>View Details</Link>
+
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-
-          {/* ปุ่ม Edit & Delete */}
-          <div className="mt-4 ml-auto flex gap-2">
-            <button className="btn btn-primary">Edit</button>
-            <button className="btn btn-error">Delete</button>
-          </div>
-        </div>
+          ))
+        ) : (
+          <p className="text-center text-gray-500">No items found</p>
+        )}
       </div>
     </div>
   );
