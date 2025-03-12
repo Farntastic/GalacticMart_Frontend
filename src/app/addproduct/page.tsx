@@ -23,8 +23,8 @@ export default function AddProduct() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-8  ">
-      <div className="card bg-sky-950 shadow-lg w-full p-6">
+    <div className=" items-center justify-center min-h-screen  ">
+      <div className="card bg-sky-950 shadow-lg w-full h-full p-6">
         <h2 className="text-2xl font-semibold mb-4">Add New Product</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -98,7 +98,7 @@ export default function AddProduct() {
          
 
           {/* Submit Button */}
-          <button type="submit" className="btn btn-primary w-md">
+          <button type="submit" className="btn btn-primary w-40  right-0 bottom-0 ">
             Add Product
           </button>
         </form>

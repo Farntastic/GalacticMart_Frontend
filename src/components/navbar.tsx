@@ -7,14 +7,15 @@ export default function Header() {
     <header>
       <div className="navbar bg-base-100 shadow-sm">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Galactic Mart</a>
+          <ul className="btn btn-ghost text-xl"><li><Link href="/">Galactic Mart</Link></li></ul>
+        
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
-            <li><Link href="/">Home</Link></li>
+          <li><Link href={"/product"}>Product</Link></li>
             <li><Link href="/addproduct">Add</Link></li>
             <li><Link href="/sale">Sale</Link></li>
-            <li><Link href={"/product"}>Product</Link></li>
+            
           </ul>
         </div>
       </div>
