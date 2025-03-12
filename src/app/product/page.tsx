@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import items from "@/components/items";
 
-export default function Home() {
+export default function Product() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   
