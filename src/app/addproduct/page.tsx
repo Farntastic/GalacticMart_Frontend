@@ -1,108 +1,63 @@
-"use client";
-import React, { useState } from "react";
+"use client"; // ✅ ต้องมี เพราะใช้ useState และ useRouter
+
+import { useState } from "react";
+import { useRouter } from "next/navigation"; // ✅ เปลี่ยนเป็น next/navigation
 
 export default function AddProduct() {
-  const [formData, setFormData] = useState({
-    name: "",
-    details: "",
-    price: "",
-    stock: "",
-    image: "",
-  });
+  const [name, setName] = useState("");
+  const [details, setDetails] = useState("");
+  const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
+  const [image, setImage] = useState("");
+  const [category, setCategory] = useState("Other");
+  const router = useRouter(); // ✅ ใช้ useRouter() ได้แล้ว
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Product Data:", formData);
-    alert("Product added successfully!");
+
+    const productData = {
+      name,
+      details,
+      price: parseFloat(price),
+      stock: parseInt(stock, 10),
+      image,
+      category,
+    };
+
+    const res = await fetch("http://127.0.0.1:8080/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(productData),
+    });
+
+    if (res.ok) {
+      alert("✅ เพิ่มสินค้าเรียบร้อย!");
+      router.push("/product"); // ✅ ทำงานได้แล้ว
+    } else {
+      alert("❌ เพิ่มสินค้าไม่สำเร็จ!");
+    }
   };
 
   return (
-    <div className=" items-center justify-center min-h-screen  ">
-      <div className="card bg-sky-950 shadow-lg w-full h-full p-6">
-        <h2 className="text-2xl font-semibold mb-4">Add New Product</h2>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">➕ เพิ่มสินค้าใหม่</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input type="text" placeholder="ชื่อสินค้า" value={name} onChange={(e) => setName(e.target.value)} className="w-full p-2 border rounded"/>
+        <input type="text" placeholder="รายละเอียดสินค้า" value={details} onChange={(e) => setDetails(e.target.value)} className="w-full p-2 border rounded"/>
+        <input type="number" placeholder="ราคา" value={price} onChange={(e) => setPrice(e.target.value)} className="w-full p-2 border rounded"/>
+        <input type="number" placeholder="จำนวนสินค้า" value={stock} onChange={(e) => setStock(e.target.value)} className="w-full p-2 border rounded"/>
+        <input type="text" placeholder="URL รูปภาพ" value={image} onChange={(e) => setImage(e.target.value)} className="w-full p-2 border rounded"/>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name */}
-          <div>
-            <label className="block font-medium">Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-              required
-            />
-          </div>
+        {/* ✅ Dropdown เลือกหมวดหมู่ */}
+        <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full p-2 border rounded">
+          <option value="Weapon">Weapon</option>
+          <option value="Gun">Gun</option>
+          <option value="Medicine">Medicine</option>
+          <option value="Other">Other</option>
+        </select>
 
-          <div className="flex gap-4">
-            {/* Price */}
-            <div>
-              <label className="block font-medium  ">Price ($)</label>
-              <input
-                type="number"
-                name="price"
-                value={formData.price}
-                onChange={handleChange}
-                className="input input-bordered w-md"
-                required
-              />
-            </div>
-
-            {/* Stock */}
-            <div>
-              <label className="block font-medium">Stock</label>
-              <input
-                type="number"
-                name="stock"
-                value={formData.stock}
-                onChange={handleChange}
-                className="input input-bordered w-md"
-                required
-              />
-            </div>
-          </div>
-
-          {/* Details */}
-          <div>
-            <label className="block font-medium">Details</label>
-            <textarea
-              name="details"
-              value={formData.details}
-              onChange={handleChange}
-              className="textarea textarea-bordered w-full"
-              required
-            />
-          </div>
-
-          {/* Image URL */}
-
-          <div>
-            <label className="block font-medium">Image URL</label>
-            <input
-              type="text"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-              required
-            />
-          </div>
-
-         
-
-          {/* Submit Button */}
-          <button type="submit" className="btn btn-primary w-40  right-0 bottom-0 ">
-            Add Product
-          </button>
-        </form>
-      </div>
+        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">เพิ่มสินค้า</button>
+      </form>
     </div>
   );
 }
