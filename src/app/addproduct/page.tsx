@@ -1,7 +1,7 @@
-"use client"; // ✅ ต้องมี เพราะใช้ useState และ useRouter
+"use client"; 
 
 import { useState } from "react";
-import { useRouter } from "next/navigation"; // ✅ เปลี่ยนเป็น next/navigation
+import { useRouter } from "next/navigation"; 
 
 export default function AddProduct() {
   const [name, setName] = useState("");
@@ -10,7 +10,7 @@ export default function AddProduct() {
   const [stock, setStock] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("Other");
-  const router = useRouter(); // ✅ ใช้ useRouter() ได้แล้ว
+  const router = useRouter(); 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ export default function AddProduct() {
 
     if (res.ok) {
       alert("✅ เพิ่มสินค้าเรียบร้อย!");
-      router.push("/product"); // ✅ ทำงานได้แล้ว
+      router.push("/product"); 
     } else {
       alert("❌ เพิ่มสินค้าไม่สำเร็จ!");
     }
@@ -40,7 +40,7 @@ export default function AddProduct() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">➕ เพิ่มสินค้าใหม่</h1>
+      <h1 className="text-2xl font-bold mb-4">➕ ADD PRODUCTS</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input type="text" placeholder="ชื่อสินค้า" value={name} onChange={(e) => setName(e.target.value)} className="w-full p-2 border rounded"/>
         <input type="text" placeholder="รายละเอียดสินค้า" value={details} onChange={(e) => setDetails(e.target.value)} className="w-full p-2 border rounded"/>
@@ -48,7 +48,7 @@ export default function AddProduct() {
         <input type="number" placeholder="จำนวนสินค้า" value={stock} onChange={(e) => setStock(e.target.value)} className="w-full p-2 border rounded"/>
         <input type="text" placeholder="URL รูปภาพ" value={image} onChange={(e) => setImage(e.target.value)} className="w-full p-2 border rounded"/>
 
-        {/* ✅ Dropdown เลือกหมวดหมู่ */}
+       
         <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full p-2 border rounded">
           <option value="Weapon">Weapon</option>
           <option value="Gun">Gun</option>

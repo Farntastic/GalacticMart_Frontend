@@ -22,7 +22,7 @@ export default function Product() {
   const [error, setError] = useState("");
   
 
-  // ✅ ดึงข้อมูลจาก Backend เมื่อ Component โหลด
+  
   useEffect(() => {
     fetch("http://localhost:8080/products") 
 
@@ -42,19 +42,19 @@ export default function Product() {
       });
   }, []);
 
-  // ✅ กรองสินค้าตามหมวดหมู่
+  
   const filteredItems =
     selectedCategory === "All"
       ? products
       : products.filter((item) => item.category === selectedCategory);
 
-  // ✅ แสดง Loading หรือ Error ถ้ามี
+  
   if (loading) return <p className="text-center text-gray-500">Loading...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
     <div className="relative min-h-screen">
-      {/* ปุ่มเลือกประเภท */}
+      
       <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 flex space-x-2 bg-white p-3 shadow-lg rounded-lg border border-gray-300">
         {["All", "Weapon", "Gun", "Medicine"].map((category) => (
           <button
@@ -69,7 +69,7 @@ export default function Product() {
         ))}
       </div>
 
-      {/* ✅ แสดงสินค้า */}
+      
       <div className="pt-30 flex justify-center items-center flex-wrap gap-4 bg-base-300">
         {filteredItems.length > 0 ? (
           filteredItems.map((item) => (

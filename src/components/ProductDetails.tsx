@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DeleteButton from "@/components/DeleteButton";
 
-// ✅ กำหนด Type ของ Product ให้ชัดเจน
+// ✅ กำหนด Type ของ Product 
 type Product = {
   id: string;
   name: string;
@@ -17,7 +17,7 @@ type Product = {
 };
 
 export default function ProductDetails({ productId }: { productId: string }) {
-  const [item, setItem] = useState<Product | null>(null); // ✅ เปลี่ยนจาก `any` เป็น `Product`
+  const [item, setItem] = useState<Product | null>(null); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -45,7 +45,7 @@ export default function ProductDetails({ productId }: { productId: string }) {
   return (
     <div className="flex items-center justify-center min-h-screen bg-base-300 p-8">
       <div className="card bg-base-100 shadow-xl w-full max-w-4xl flex flex-col md:flex-row overflow-hidden">
-        {/* Image Section */}
+       
         <div className="md:w-1/2">
           <Image
             src={item.image}
@@ -56,7 +56,7 @@ export default function ProductDetails({ productId }: { productId: string }) {
           />
         </div>
 
-        {/* Details Section */}
+        
         <div className="md:w-1/2 p-8 flex flex-col justify-between">
           <div>
             <h2 className="text-3xl font-bold mb-4">{item.name}</h2>
@@ -73,7 +73,7 @@ export default function ProductDetails({ productId }: { productId: string }) {
             <button className="btn btn-primary flex-1">
               <Link href={`/edit/${item.id}`} className="btn btn-primary">Edit</Link>
             </button>
-            <DeleteButton productId={item.id} /> {/* ✅ ใช้ Client Component สำหรับ Delete */}
+            <DeleteButton productId={item.id} /> 
           </div>
         </div>
       </div>

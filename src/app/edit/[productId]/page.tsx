@@ -5,7 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 
 export default function EditProduct() {
   const router = useRouter();
-  const params = useParams(); // ✅ ใช้ `useParams()` ดึงค่า params
+  const params = useParams(); 
   const [productId, setProductId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -18,14 +18,14 @@ export default function EditProduct() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // ✅ รอให้ params โหลดเสร็จ
+  
   useEffect(() => {
     if (params?.productId) {
-      setProductId(params.productId as string); // ✅ แปลงค่า params.productId เป็น string
+      setProductId(params.productId as string); 
     }
   }, [params]);
 
-  // ✅ โหลดข้อมูลสินค้าเมื่อ productId พร้อม
+  
   useEffect(() => {
     if (!productId) return;
 
@@ -53,12 +53,12 @@ export default function EditProduct() {
       });
   }, [productId]);
 
-  // ✅ อัปเดตค่าฟอร์มเมื่อผู้ใช้พิมพ์
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // ✅ อัปเดตข้อมูลสินค้าไปที่ Backend
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!productId) return;

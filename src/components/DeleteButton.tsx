@@ -7,7 +7,7 @@ export default function DeleteButton({ productId }: { productId: string }) {
       const res = await fetch(`http://127.0.0.1:8080/products/${productId}`, { method: "DELETE" });
       if (res.ok) {
         alert("✅ Product deleted successfully!");
-        window.location.href = "/product"; // ✅ Redirect ไปหน้าหลัก
+        window.location.href = "/product"; 
       } else {
         alert("❌ Failed to delete product!");
       }
