@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DeleteButton from "@/components/DeleteButton";
 
+
 // ✅ กำหนด Type ของ Product 
 type Product = {
   id: string;
@@ -20,6 +21,8 @@ export default function ProductDetails({ productId }: { productId: string }) {
   const [item, setItem] = useState<Product | null>(null); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+
 
   // ✅ โหลดข้อมูลสินค้าเมื่อ Component โหลด
   useEffect(() => {
@@ -60,8 +63,8 @@ export default function ProductDetails({ productId }: { productId: string }) {
         <div className="md:w-1/2 p-8 flex flex-col justify-between">
           <div>
             <h2 className="text-3xl font-bold mb-4">{item.name}</h2>
-            <p className="text-gray-500 mb-2">Category: {item.category}</p>
-            <p className="text-gray-700 mb-6">{item.details}</p>
+            <p className= "font-bold mb-2">Category: {item.category}</p>
+            <p className="text-gray-400 mb-6 ">{item.details} </p>
           </div>
 
           <div className="flex justify-between items-center">

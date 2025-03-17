@@ -85,9 +85,10 @@ export default function Product() {
               <div className="card-body">
                 <h2 className="card-title">{item.name}</h2>
                 <p>Category: {item.category}</p>
-                <p>{item.details}</p>
+                <p className="text-gray-400 mb-6 line-clamp-3">{item.details}</p>
+
                 <p className="font-bold">💰 {item.price} THB</p>
-                <p className="text-sm text-gray-600">📦 คงเหลือ: {item.stock}</p>
+                <p className="text-sm">📦 Stock: {item.stock}</p>
                 <div className="card-actions justify-end">
                   <button className="btn btn-primary">
                     <Link href={`/product/${item.id}`}>View Details</Link>
